@@ -48,73 +48,74 @@ class _TransactionListState extends State<TransactionList> {
               ],
             )
           : ListView.builder(
-        
               itemBuilder: (context, index) {
                 return Card(
                     elevation: 5.0,
                     // ignore: avoid_print
-                    child: Row(
-                      children: [
-                        Container(
-                          margin:
-                              // ignore: prefer_const_constructors
-                              EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 5.0),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 2.0,
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin:
+                                // ignore: prefer_const_constructors
+                                EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 5.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 2.0,
+                              ),
                             ),
-                          ),
-                          // ignore: prefer_const_constructors
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            '\u{20B9}${widget.transactions[index].amount.toStringAsFixed(2)}',
                             // ignore: prefer_const_constructors
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Theme.of(context).primaryColorDark,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          //mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Text(
-                                widget.transactions[index].title.toString(),
-                                style: Theme.of(context).textTheme.bodyText2,
-                              ),
-                            ),
-                            Text(
-                              DateFormat.yMMMMEEEEd()
-                                  .format(widget.transactions[index].date),
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 11.0,
-                                  color: Colors.grey),
-                            ),
-                          ],
-                        ),
-                        Flexible(
-                          flex: 2,
-                          // ignore: prefer_const_constructors
-                          
-                          child: Container(
-                            padding: EdgeInsets.only(left: 50),
-                            child: IconButton(
-                              onPressed: () {
-                                _delete(widget.transactions[0].id);
-                              },
-                              icon: const Icon(
-                                Icons.delete,
+                            padding: EdgeInsets.all(10.0),
+                            child: Text(
+                              '\u{20B9}${widget.transactions[index].amount.toStringAsFixed(2)}',
+                              // ignore: prefer_const_constructors
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.0,
+                                color: Theme.of(context).primaryColorDark,
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                          Column(
+                            //mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Text(
+                                  widget.transactions[index].title.toString(),
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                              ),
+                              Text(
+                                DateFormat.yMMMMEEEEd()
+                                    .format(widget.transactions[index].date),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 11.0,
+                                    color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            // ignorealig: prefer_const_constructors
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              padding: EdgeInsets.only(left: 50),
+                              child: IconButton(
+                                onPressed: () {
+                                  _delete(widget.transactions[0].id);
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ));
               },
               itemCount: widget.transactions.length,
