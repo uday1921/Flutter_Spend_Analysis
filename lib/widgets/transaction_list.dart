@@ -52,9 +52,11 @@ class _TransactionListState extends State<TransactionList> {
                 return Card(
                     elevation: 5.0,
                     // ignore: avoid_print
-                    child: Container(
+                    child: Flexible(
+                      fit: FlexFit.tight,
+                      flex: 1,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             margin:
@@ -69,13 +71,15 @@ class _TransactionListState extends State<TransactionList> {
                             ),
                             // ignore: prefer_const_constructors
                             padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              '\u{20B9}${widget.transactions[index].amount.toStringAsFixed(2)}',
-                              // ignore: prefer_const_constructors
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.0,
-                                color: Theme.of(context).primaryColorDark,
+                            child: FittedBox(
+                              child: Text(
+                                '\u{20B9}${widget.transactions[index].amount.toStringAsFixed(2)}',
+                                // ignore: prefer_const_constructors
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
                               ),
                             ),
                           ),

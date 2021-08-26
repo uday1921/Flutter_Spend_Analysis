@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:spend_analysis/widgets/new_Transaction.dart';
 import 'widgets/transaction_list.dart';
 import 'models/transaction.dart';
+import 'widgets/chart.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,6 +47,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransctions = [];
   int inc = 0;
+
+  List<Transaction> get _recentTransactions {
+    return _userTransctions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   void _addTransaction(String txtitle, double txAmount) {
     // ignore: unused_local_variable
@@ -91,15 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                // ignore: sized_box_for_whitespasce
-                child: Container(width: 200, child: Text("Chart!")),
-                elevation: 5,
-              ),
-            ),
+            Chart(_recentTransactions),
             TransactionList(_userTransctions),
           ],
         ),
